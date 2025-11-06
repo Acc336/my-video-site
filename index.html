@@ -1,43 +1,30 @@
-﻿<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
-  <title></title>
-  <style>
-    /* 去除默认间距，页面只有视频 */
-    html,body {
-      height:100%;
-      margin:0;
-      background:#000;
-    }
-    /* 视频覆盖整个视口，居中裁切 */
-    video {
-      width:100vw;
-      height:100vh;
-      object-fit:cover; /* cover 保持比例并裁切以填充屏幕 */
-      display:block;
-      border:0;
-      padding:0;
-      margin:0;
-    }
-  </style>
-</head>
-<body>
-  <!-- 自动播放（静音以便浏览器允许自动播放）、循环、行内播放(移动端) -->
-  <video id="v" autoplay muted loop playsinline>
-    <source src="video.mp4" type="video/mp4">
-    您的浏览器不支持 video 元素。
-  </video>
-
-  <script>
-    // 兼容性：尝试播放，若因策略被阻止，静默降级为等待用户触发
-    const vid = document.getElementById('v');
-    vid.play().catch(()=> {
-      // 某些浏览器需要用户手动触发声音/播放；保持静音并显示点击播放提示（可选）
-      // 这里不显示任何文字，用户可点击屏幕任意位置触发播放
-      document.documentElement.addEventListener('click', () => { vid.play(); }, { once: true });
-    });
-  </script>
-</body>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>手动播放视频</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      video {
+        width: 80%;
+        max-width: 600px;
+        border: 2px solid #fff;
+        border-radius: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 手动播放的视频 -->
+    <video controls>
+      <source src="video.mp4" type="video/mp4">
+      您的浏览器不支持视频播放。
+    </video>
+  </body>
 </html>
